@@ -93,7 +93,7 @@ Here's the architecture:
 1. **Set the SCIM API key** in your Coder deployment:
 
    ```bash
-   CODER_SCIM_API_KEY="your-secret-token-here"
+   CODER_SCIM_AUTH_HEADER="your-secret-token-here"
    ```
 
    Generate a secure random token (e.g., `openssl rand -hex 32`)
@@ -392,12 +392,12 @@ curl -X PATCH \
 2. **Check API key matches:**
    ```bash
    # On Coder server
-   echo $CODER_SCIM_API_KEY
+   echo $CODER_SCIM_AUTH_HEADER
    ```
 
 3. **Test endpoint directly:**
    ```bash
-   curl -H "Authorization: Bearer $CODER_SCIM_API_KEY" \
+   curl -H "Authorization: Bearer $CODER_SCIM_AUTH_HEADER" \
         https://your-coder.com/scim/v2/ServiceProviderConfig
    ```
 
@@ -500,7 +500,7 @@ curl -X PATCH \
 2. **Verify API key is set in Coder:**
    ```bash
    # Should output your key
-   printenv | grep CODER_SCIM_API_KEY
+   printenv | grep CODER_SCIM_AUTH_HEADER
    ```
 
 3. **Restart Coder after changing env vars**
@@ -637,7 +637,7 @@ CODER_OIDC_USERNAME_FIELD="preferred_username"
 # ============================================
 # SCIM Configuration (Provisioning)
 # ============================================
-CODER_SCIM_API_KEY="your-secret-scim-token-here"
+CODER_SCIM_AUTH_HEADER="your-secret-scim-token-here"
 
 # ============================================
 # Logging (for debugging)
